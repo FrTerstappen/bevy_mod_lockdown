@@ -1,0 +1,13 @@
+{
+    "cSpell.words": [
+        "getresuid",
+        "landlock",
+        "Lockdown",
+        "ruleset",
+        "rustc",
+        "Sandboxing",
+        "setresgid",
+        "setresuid",
+        "unistd"
+    ]
+}

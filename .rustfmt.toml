@@ -1,0 +1,43 @@
+# Check settings here: https://rust-lang.github.io/rustfmt/
+unstable_features = true
+
+# Global
+edition = "2021"
+newline_style = "Unix"
+version = "Two"
+max_width = 120
+tab_spaces = 4
+use_small_heuristics = "Max"
+
+# Layout
+imports_layout = "Vertical"
+fn_params_layout = "Vertical"
+fn_single_line = true
+
+# Order
+reorder_modules = true
+reorder_imports = true
+reorder_impl_items = true
+
+# Imports
+imports_indent = "Block"
+imports_granularity = "Crate"
+group_imports = "StdExternalCrate"
+
+# Comments
+normalize_comments = true
+normalize_doc_attributes = true
+format_code_in_doc_comments = true
+wrap_comments = true
+comment_width = 120
+
+# Align
+enum_discrim_align_threshold = 20
+struct_field_align_threshold = 20
+
+# Other
+struct_lit_single_line = false
+match_block_trailing_comma = true
+use_try_shorthand = true
+hex_literal_case = "Upper"
+force_explicit_abi = true
