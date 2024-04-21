@@ -1,0 +1,61 @@
+[graph]
+# targets = [] # Disables all not explicitly listed targets
+# exclude = [] # Also removes dependencies of package if not otherwise connected
+all-features = true
+no-default-features = false
+# features = [] # We use all-features
+exclude-dev = false
+
+[output]
+feature-depth = 1
+
+[advisories]
+version = 2
+# db-path = "$CARGO_HOME/advisory-dbs"
+# db-urls = ["https://github.com/rustsec/advisory-db"]
+# ignore = []
+git-fetch-with-cli = false # False = use build in git library
+yanked = "deny"
+
+[licenses]
+version = 2
+allow = [
+    "Apache-2.0",       # https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)
+    "BSD-2-Clause",     # https://tldrlegal.com/license/bsd-2-clause-license-(freebsd)
+    "MIT",              # https://tldrlegal.com/license/mit-license
+    "Unicode-DFS-2016", # https://spdx.org/licenses/Unicode-DFS-2016.html
+    "Zlib",             # https://tldrlegal.com/license/zlib-libpng-license-(zlib)
+]
+confidence-threshold = 0.93
+# exceptions = []
+include-dev = true
+unused-allowed-license = "warn"
+
+[bans]
+multiple-versions = "deny"
+multiple-versions-include-dev = true
+wildcards = "deny"
+highlight = "all"
+workspace-default-features = "allow"
+external-default-features = "allow"
+# allow = [] # Whitelist if one or more entries
+# deny = []
+skip = [
+    { crate = "regex-automata@0.1.10", reason = "Old version used by other dependency" },
+    { crate = "regex-syntax@0.6.29", reason = "Old version used by other dependency" },
+    { crate = "tracing-log@0.1.4", reason = "Old version used by other dependency" },
+] # Only for duplicate detection
+# skip-tree = []
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []
+required-git-spec = "rev"
+# private = []
+
+# [sources.allow-org]
+# github = []
+# gitlab = []
+# bitbucket = []
