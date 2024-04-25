@@ -12,6 +12,10 @@ bevy_mod_lockdown is a library to reduce the attack surface your application off
 
 ## Description
 
+> [!NOTE]  
+> This repository is open for additional features and the expansion of existing features to other platforms.  
+> It is currently limited to the features I use in my personal project and the platforms I have available.
+
 bevy_mod_lockdown offers ways to reduce the attack surface your application offers.
 It can for example disable network usage or limit file system access to specific directories.
 This is mainly intended for applications that load third-party code but can also help in other situations.
@@ -57,12 +61,12 @@ Include other features to see something beside the warning.
 
 Feature support on different platform:
 
-|               |     Android     |       iOS       |       Linux        |      MacOS      |      Wasm       |      Windows       |
-| :------------ | :-------------: | :-------------: | :----------------: | :-------------: | :-------------: | :----------------: |
-| `filesystem`  | :grey_question: | :grey_question: | :white_check_mark: | :grey_question: | :grey_question: |  :grey_question:   |
-| `network`     | :grey_question: | :grey_question: |  :grey_question:   | :grey_question: | :grey_question: |  :grey_question:   |
-| `privilege`   | :grey_question: | :grey_question: | :white_check_mark: | :grey_question: | :grey_question: | :white_check_mark: |
-| `system_call` | :grey_question: | :grey_question: |  :grey_question:   | :grey_question: | :grey_question: |  :grey_question:   |
+|               |       Linux        |      Windows       |
+| :------------ | :----------------: | :----------------: |
+| `filesystem`  | :white_check_mark: |  :grey_question:   |
+| `network`     |  :grey_question:   |  :grey_question:   |
+| `privilege`   | :white_check_mark: | :white_check_mark: |
+| `system_call` |  :grey_question:   |  :grey_question:   |
 
 __Legend:__  
 :grey_question: = To be evaluated  

@@ -10,22 +10,10 @@ components = [
     "rust-src",
 ]
 targets = [
-    # WASM
-    "wasm32-unknown-unknown",
-
     # Linux
     "x86_64-unknown-linux-gnu",
 
-    # Mac
-    "aarch64-apple-darwin",
-
-    # iOS
-    "aarch64-apple-ios",
-
     # Windows
     "x86_64-pc-windows-gnu",
-
-    # Android
-    "aarch64-linux-android",
 ]
 profile = "default"
