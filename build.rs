@@ -9,7 +9,7 @@ fn check_enabled_features() {
             continue;
         }
 
-        if name == "feature_warning" {
+        if name == "CARGO_FEATURE_FEATURE_WARNING" {
             continue;
         }
 
