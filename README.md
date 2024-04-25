@@ -26,9 +26,9 @@ See this [chapter](#status-resources) for more information.
 
 ### Status resources
 
-The features each add a resource `FeatureNameAdjustment` that can be used to check the current status of the adjustment.
-These resources are enums with variants describing the current status.
-They start with a value of `Unknown`.
+The resource `LockdownAdjustments` can be used to check the status of the adjustments.
+The features each add a field to the resource that matches the feature name.
+These fields are enums with variants describing the current status.
 
 ## Features
 
@@ -41,7 +41,19 @@ You can see the availability of features and their inclusion in full_speed in th
 > [!NOTE]
 > By default only the feature `feature_warning` is enabled which logs a warning when no other feature is enabled.
 
-### Platform support
+### Platform independent features
+
+The features described here are independent of the used platform.
+
+#### Feature:  `egui`
+
+Adds a convenience method to display the `LockdownAdjustments` with egui.
+See the `egui` example for usage.
+
+Run the example with `cargo run --example egui --features="egui"`.
+Include other features to see something beside the warning.
+
+### Platform dependent features
 
 Feature support on different platform:
 
@@ -63,7 +75,7 @@ __Legend:__
 
 [^1]: Beside a log entry in some cases.
 
-### Feature: `filesystem`
+#### Feature:  `filesystem`
 
 Restricts access to the filesystem, blocking access to all not explicitly allowed paths.
 
@@ -78,11 +90,11 @@ This happens in `Startup` which means that full access to the file system is sti
 Currently only implemented on linux.
 Where it uses landlock and requires a kernel with support for it.
 
-### Feature: `network`
+#### Feature:  `network`
 
 Not yet implemented for any platform.
 
-### Feature: `privilege`
+#### Feature:  `privilege`
 
 Reduces the privilege granted to the application.
 
@@ -91,7 +103,7 @@ Reduces the privilege granted to the application.
 
 This happens in `PostStartup` which means that elevated privileges are still available in `PreStartup`, `Startup` and partly in `PostStartup`.
 
-### Feature: `system_call`
+#### Feature:  `system_call`
 
 Not yet implemented for any platform.
 
@@ -142,4 +154,4 @@ All code in this repository is dual-licensed under either:
 
 |   bevy | bevy_mod_lockdown |
 | -----: | ----------------: |
-| 0.13.1 |             0.1.0 |
+| 0.13.1 |     0.1.0 - 0.2.0 |

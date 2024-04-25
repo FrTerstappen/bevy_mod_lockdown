@@ -4,7 +4,7 @@ use bevy::prelude::*;
 #[reflect(Resource)]
 pub enum NetworkAdjustment {
     #[default]
-    Unknown,
+    NotImplemented,
 }
 
 #[derive(Debug)]
@@ -13,9 +13,7 @@ pub struct NetworkPlugin;
 impl Plugin for NetworkPlugin {
     fn build(
         &self,
-        app: &mut App,
+        _app: &mut App,
     ) {
-        app.register_type::<NetworkAdjustment>();
-        app.insert_resource(NetworkAdjustment::Unknown);
     }
 }

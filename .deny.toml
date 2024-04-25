@@ -1,0 +1,103 @@
+[graph]
+# targets = [] # Disables all not explicitly listed targets
+# exclude = [] # Also removes dependencies of package if not otherwise connected
+all-features = true
+no-default-features = false
+# features = [] # We use all-features
+exclude-dev = false
+
+[output]
+feature-depth = 1
+
+[advisories]
+version = 2
+# db-path = "$CARGO_HOME/advisory-dbs"
+# db-urls = ["https://github.com/rustsec/advisory-db"]
+# ignore = []
+git-fetch-with-cli = false # False = use build in git library
+yanked = "deny"
+
+[licenses]
+version = 2
+allow = [
+    "Apache-2.0",         # https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)
+    "BSD-2-Clause",       # https://tldrlegal.com/license/bsd-2-clause-license-(freebsd)
+    "BSD-3-Clause",       # https://tldrlegal.com/license/bsd-3-clause-license-(revised)
+    "CC0-1.0",            # https://creativecommons.org/publicdomain/zero/1.0/
+    "ISC",                # https://tldrlegal.com/license/-isc-license
+    "LicenseRef-UFL-1.0", # https://tldrlegal.com/license/ubuntu-font-license,-1.0
+    "MIT",                # https://tldrlegal.com/license/mit-license
+    "OFL-1.1",            # https://spdx.org/licenses/OFL-1.1.html
+    "Unicode-DFS-2016",   # https://spdx.org/licenses/Unicode-DFS-2016.html
+    "Zlib",               # https://tldrlegal.com/license/zlib-libpng-license-(zlib)
+    "MIT-0",
+    "0BSD",
+]
+confidence-threshold = 0.93
+# exceptions = []
+include-dev = true
+unused-allowed-license = "warn"
+
+[bans]
+multiple-versions = "deny"
+multiple-versions-include-dev = false
+wildcards = "deny"
+highlight = "all"
+workspace-default-features = "allow"
+external-default-features = "allow"
+# allow = [] # Whitelist if one or more entries
+# deny = []
+skip = [
+    { crate = "regex-automata@0.1.10", reason = "Old version used by other dependency" },
+    { crate = "regex-syntax@0.6.29", reason = "Old version used by other dependency" },
+    { crate = "tracing-log@0.1.4", reason = "Old version used by other dependency" },
+    { crate = "bitflags@1.3.2", reason = "Old version used by other dependency" },
+    { crate = "event-listener@2.5.3", reason = "Old version used by other dependency" },
+    { crate = "event-listener@4.0.3", reason = "Old version used by other dependency" },
+    { crate = "event-listener-strategy@0.4.0", reason = "Old version used by other dependency" },
+    { crate = "libloading@0.7.4", reason = "Old version used by other dependency" },
+    { crate = "objc-sys@0.2.0-beta.2", reason = "Old version used by other dependency" },
+    { crate = "objc2@0.3.0-beta.3.patch-leaks.3", reason = "Old version used by other dependency" },
+    { crate = "objc2-encode@2.0.0-pre.2", reason = "Old version used by other dependency" },
+    { crate = "redox_syscall@0.3.5", reason = "Old version used by other dependency" },
+    { crate = "syn@1.0.109", reason = "Old version used by other dependency" },
+    { crate = "windows@0.48.0", reason = "Old version used by other dependency" },
+    { crate = "windows@0.52.0", reason = "Old version used by other dependency" },
+    { crate = "windows@0.54.0", reason = "Old version used by other dependency" },
+    { crate = "windows-core@0.52.0", reason = "Old version used by other dependency" },
+    { crate = "windows-core@0.54.0", reason = "Old version used by other dependency" },
+    { crate = "windows-sys@0.45.0", reason = "Old version used by other dependency" },
+    { crate = "windows-sys@0.48.0", reason = "Old version used by other dependency" },
+    { crate = "windows-targets@0.42.2 ", reason = "Old version used by other dependency" },
+    { crate = "windows-targets@0.48.5", reason = "Old version used by other dependency" },
+    { crate = "windows_aarch64_gnullvm@0.42.2", reason = "Old version used by other dependency" },
+    { crate = "windows_aarch64_gnullvm@0.48.5", reason = "Old version used by other dependency" },
+    { crate = "windows_aarch64_msvc@0.42.2", reason = "Old version used by other dependency" },
+    { crate = "windows_aarch64_msvc@0.48.5", reason = "Old version used by other dependency" },
+    { crate = "windows_i686_gnu@0.42.2", reason = "Old version used by other dependency" },
+    { crate = "windows_i686_gnu@0.48.5", reason = "Old version used by other dependency" },
+    { crate = "windows_i686_msvc@0.42.2", reason = "Old version used by other dependency" },
+    { crate = "windows_i686_msvc@0.48.5", reason = "Old version used by other dependency" },
+    { crate = "windows_x86_64_gnu@0.42.2", reason = "Old version used by other dependency" },
+    { crate = "windows_x86_64_gnu@0.48.5", reason = "Old version used by other dependency" },
+    { crate = "windows_x86_64_gnullvm@0.42.2", reason = "Old version used by other dependency" },
+    { crate = "windows_x86_64_gnullvm@0.48.5", reason = "Old version used by other dependency" },
+    { crate = "windows_x86_64_msvc@0.42.2", reason = "Old version used by other dependency" },
+    { crate = "windows_x86_64_msvc@0.48.5", reason = "Old version used by other dependency" },
+    { crate = "windows-implement@0.48.0", reason = "Old version used by other dependency" },
+    { crate = "windows-interface@0.48.0", reason = "Old version used by other dependency" },
+] # Only for duplicate detection
+# skip-tree = []
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []
+required-git-spec = "rev"
+# private = []
+
+# [sources.allow-org]
+# github = []
+# gitlab = []
+# bitbucket = []

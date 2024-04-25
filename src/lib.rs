@@ -1,3 +1,6 @@
+#[cfg(feature = "egui")]
+pub mod egui;
+
 #[cfg(feature = "filesystem")]
 pub mod filesystem;
 
@@ -19,16 +22,32 @@ pub enum LockdownSet {
     PostStartup,
 }
 
+#[derive(Debug, Default, Resource, Reflect)]
+#[reflect(Resource)]
+pub struct LockdownAdjustments {
+    #[cfg(feature = "filesystem")]
+    filesystem:  filesystem::FilesystemAdjustment,
+    #[cfg(feature = "network")]
+    network:     network::NetworkAdjustment,
+    #[cfg(feature = "privilege")]
+    privilege:   privilege::PrivilegeAdjustment,
+    #[cfg(feature = "system_call")]
+    system_call: system_call::SystemCallAdjustment,
+}
+
 #[derive(Debug)]
 pub struct LockdownPlugin;
 
 impl Plugin for LockdownPlugin {
     fn build(
         &self,
-        _app: &mut App,
+        app: &mut App,
     ) {
+        app.register_type::<LockdownAdjustments>();
+        app.init_resource::<LockdownAdjustments>();
+
         #[cfg(feature = "feature_warning")]
-        if env!("HAS_FEATURES") == "false" {
+        if std::mem::size_of::<LockdownAdjustments>() == 0 {
             warn!("No features activated for bevy_mod_lockdown.");
             warn!("This plugin does offer most functionality behind feature flags.");
             warn!("See README for more information and a list of available features.");
@@ -38,15 +57,15 @@ impl Plugin for LockdownPlugin {
         }
 
         #[cfg(feature = "filesystem")]
-        _app.add_plugins(filesystem::FilesystemPlugin);
+        app.add_plugins(filesystem::FilesystemPlugin);
 
         #[cfg(feature = "network")]
-        _app.add_plugins(network::NetworkPlugin);
+        app.add_plugins(network::NetworkPlugin);
 
         #[cfg(feature = "privilege")]
-        _app.add_plugins(privilege::PrivilegePlugin);
+        app.add_plugins(privilege::PrivilegePlugin);
 
         #[cfg(feature = "system_call")]
-        _app.add_plugins(system_call::SystemCallPlugin);
+        app.add_plugins(system_call::SystemCallPlugin);
     }
 }
