@@ -1,15 +1,19 @@
 use bevy::prelude::*;
 
-use crate::LockdownSet;
+use crate::{
+    LockdownAdjustments,
+    LockdownSet,
+};
 
 #[derive(Debug, Default, Resource, Reflect)]
 #[reflect(Resource)]
 pub enum PrivilegeAdjustment {
     #[default]
-    Unknown,
+    NotImplemented,
     Completed,
     Failed,
     NotNeeded,
+    Unknown,
 }
 
 #[derive(Debug)]
@@ -20,26 +24,21 @@ impl Plugin for PrivilegePlugin {
         &self,
         app: &mut App,
     ) {
-        app.register_type::<PrivilegeAdjustment>();
-        app.insert_resource(PrivilegeAdjustment::Unknown);
-
         #[cfg(target_os = "windows")]
         {
-            app.add_systems(PostStartup, try_adjusting_privilege_windows.in_set(LockdownSet::PostStartup));
+            app.add_systems(PostStartup, adjust_privilege_windows.in_set(LockdownSet::PostStartup));
         }
 
         // TODO: we use nix for this, this means theoretical this runs on Android, iOS, Linux and MacOs
         #[cfg(target_os = "linux")]
         {
-            app.add_systems(PostStartup, try_dropping_root_nix.chain().in_set(LockdownSet::PostStartup));
+            app.add_systems(PostStartup, try_dropping_root_nix.in_set(LockdownSet::PostStartup));
         }
     }
 }
 
 #[cfg(target_os = "linux")]
-fn try_dropping_root_nix(mut privilege_adjustment: ResMut<'_, PrivilegeAdjustment>) {
-    *privilege_adjustment = PrivilegeAdjustment::Failed;
-
+fn try_dropping_root_nix(mut adjustments: ResMut<'_, LockdownAdjustments>) {
     // Check if running as root
     match nix::unistd::getresuid() {
         Ok(uid) => {
@@ -47,7 +46,7 @@ fn try_dropping_root_nix(mut privilege_adjustment: ResMut<'_, PrivilegeAdjustmen
                 warn!("User is root. Trying to drop root");
             } else {
                 info!("Did not run as root. No adjustment needed");
-                *privilege_adjustment = PrivilegeAdjustment::NotNeeded;
+                adjustments.privilege = PrivilegeAdjustment::NotNeeded;
                 return;
             }
         },
@@ -59,10 +58,12 @@ fn try_dropping_root_nix(mut privilege_adjustment: ResMut<'_, PrivilegeAdjustmen
     // Get user id (from caller of sudo)
     let Ok(user_id) = std::env::var("SUDO_UID") else {
         warn!("Unable to get user id of calling user. Unable to adjust");
+        adjustments.privilege = PrivilegeAdjustment::Failed;
         return;
     };
     let Ok(user_id) = user_id.parse() else {
         warn!("Unable to parse user id. Unable to adjust");
+        adjustments.privilege = PrivilegeAdjustment::Failed;
         return;
     };
     let user_id = nix::unistd::Uid::from_raw(user_id);
@@ -70,10 +71,12 @@ fn try_dropping_root_nix(mut privilege_adjustment: ResMut<'_, PrivilegeAdjustmen
     // Get group id (from caller of sudo)
     let Ok(group_id) = std::env::var("SUDO_GID") else {
         warn!("Unable to get group id of calling user. Unable to adjust");
+        adjustments.privilege = PrivilegeAdjustment::Failed;
         return;
     };
     let Ok(group_id) = group_id.parse() else {
         warn!("Unable to parse group id. Unable to adjust");
+        adjustments.privilege = PrivilegeAdjustment::Failed;
         return;
     };
     let group_id = nix::unistd::Gid::from_raw(group_id);
@@ -95,21 +98,22 @@ fn try_dropping_root_nix(mut privilege_adjustment: ResMut<'_, PrivilegeAdjustmen
         Ok(uid) => {
             if uid.real.is_root() || uid.effective.is_root() || uid.saved.is_root() {
                 warn!("User is root after changing");
+                adjustments.privilege = PrivilegeAdjustment::Failed;
             } else {
                 info!("Adjustment successful. No longer running as root");
-                *privilege_adjustment = PrivilegeAdjustment::Completed;
+                adjustments.privilege = PrivilegeAdjustment::Completed;
             }
         },
         Err(e) => {
             warn!("Unable to get uid: {e}");
-            *privilege_adjustment = PrivilegeAdjustment::Unknown;
+            adjustments.privilege = PrivilegeAdjustment::Unknown;
         },
     }
 }
 
 #[cfg(target_os = "windows")]
 #[allow(unsafe_code)]
-fn try_adjusting_privilege_windows(mut privilege_adjustment: ResMut<'_, PrivilegeAdjustment>) {
+fn adjust_privilege_windows(mut adjustments: ResMut<'_, LockdownAdjustments>) {
     use windows::Win32::{
         Foundation,
         Foundation::{
@@ -128,8 +132,6 @@ fn try_adjusting_privilege_windows(mut privilege_adjustment: ResMut<'_, Privileg
         },
     };
 
-    *privilege_adjustment = PrivilegeAdjustment::Failed;
-
     // Get a handle to the current process's primary token
     let process = unsafe { GetCurrentProcess() };
     let mut token = HANDLE::default();
@@ -137,6 +139,7 @@ fn try_adjusting_privilege_windows(mut privilege_adjustment: ResMut<'_, Privileg
     let result = unsafe { OpenProcessToken(process, desired_access, &mut token) };
     if let Err(e) = result {
         warn!("Unable to open process token: {e}");
+        adjustments.privilege = PrivilegeAdjustment::Failed;
         return;
     }
 
@@ -151,8 +154,9 @@ fn try_adjusting_privilege_windows(mut privilege_adjustment: ResMut<'_, Privileg
     };
     if let Err(e) = result {
         warn!("Unable to adjust token privilege: {e}");
+        adjustments.privilege = PrivilegeAdjustment::Failed;
     } else {
-        *privilege_adjustment = PrivilegeAdjustment::Completed;
+        adjustments.privilege = PrivilegeAdjustment::Completed;
     }
 
     // Cleanup
