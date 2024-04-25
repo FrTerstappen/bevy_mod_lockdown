@@ -14,7 +14,7 @@ dev:
     cargo deny check advisories
     cargo deny check sources
     cargo clippy --workspace --all-targets --all-features
-    cargo build --workspace  --keep-going --all-features
+    cargo build --workspace  --keep-going --all-features --timings
 
 test:
     cargo test --workspace --all-targets --all-features
