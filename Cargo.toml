@@ -63,9 +63,6 @@ name = "egui"
 path = "examples/egui.rs"
 required-features = ["egui"]
 
-
-[lints]
-# Rust
 [workspace.lints.rust]
 unsafe_code = "deny"
 unused = "deny"
