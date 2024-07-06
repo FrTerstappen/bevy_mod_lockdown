@@ -1,1 +1,8 @@
 disallowed-names = ["foo", "bar", "baz", "tmp", "temp"]
+allow-unwrap-in-tests = true
+allow-expect-in-tests = true
+allow-dbg-in-tests = true
+
+disallowed-types = [
+    { path = "std::collections::HashMap", reason = "Use bevy::utils::HashMap" },
+]
