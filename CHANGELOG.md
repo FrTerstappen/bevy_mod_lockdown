@@ -23,6 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Currently nothing
 
+## [0.3.0] - 2024-07-06
+
+### Changed
+
+- Updated to bevy 0.14.0
+- Updated all other dependencies
+- Use landlock ABI 4 for locking the filesystem
+
 ## [0.2.0] - 2024-04-25
 
 ### Added
