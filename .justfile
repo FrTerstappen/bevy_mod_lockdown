@@ -26,6 +26,9 @@ check:
     cargo deny check sources
     cargo outdated --depth 6
 
+[group("Code quality")]
+code-quality: lint check
+
 [group("Dev")]
 dev: clear code-quality
     cargo build --workspace  --keep-going --all-features --timings
