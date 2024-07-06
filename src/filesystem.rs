@@ -131,7 +131,7 @@ fn try_restricting_file_access_linux(
         ABI,
     };
 
-    let abi = ABI::V3;
+    let abi = ABI::V4;
     let read_only = AccessFs::from_read(abi);
     let write_only = AccessFs::from_write(abi);
     let read_write = AccessFs::from_all(abi);
