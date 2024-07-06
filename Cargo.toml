@@ -63,17 +63,93 @@ name = "egui"
 path = "examples/egui.rs"
 required-features = ["egui"]
 
+# Rust
 [workspace.lints.rust]
-unsafe_code = "deny"
-unused = { level = "deny", priority = -1 }
-nonstandard_style = { level = "deny", priority = -1 }
-future_incompatible = { level = "deny", priority = -1 }
-deprecated-in-future = "deny"
-unused-crate-dependencies = "warn"
-unused-qualifications = "warn"
-missing_debug_implementations = "deny"
+# Groups with less priority
+future_incompatible = { level = "deny", priority = -10 }
+keyword_idents = { level = "deny", priority = -10 }
+let-underscore = { level = "deny", priority = -10 }
+nonstandard_style = { level = "deny", priority = -10 }
+refining-impl-trait = { level = "deny", priority = -10 }
+rust_2018_compatibility = { level = "deny", priority = -10 }
+rust_2018_idioms = { level = "deny", priority = -10 }
+rust_2021_compatibility = { level = "deny", priority = -10 }
+rust-2024-compatibility = { level = "deny", priority = -10 }
+unused = { level = "deny", priority = -11 }
 
-rust_2018_idioms = { level = "warn", priority = -1 }
-rust_2018_compatibility = { level = "deny", priority = -1 }
-rust_2021_compatibility = { level = "deny", priority = -1 }
-rust-2024-compatibility = "deny"
+# Extra
+absolute_paths_not_starting_with_crate = "deny"
+missing_debug_implementations = "deny"
+non_ascii_idents = "deny"
+trivial_casts = "warn"
+trivial_numeric_casts = "warn"
+unreachable-pub = "warn"
+unsafe_code = "deny"
+unsafe-op-in-unsafe-fn = "deny"
+
+
+# Clippy
+[workspace.lints.clippy]
+# Groups with less priority
+cargo = { level = "deny", priority = -10 }
+complexity = { level = "deny", priority = -10 }
+correctness = { level = "deny", priority = -10 }
+nursery = { level = "allow", priority = -10 }
+pedantic = { level = "allow", priority = -10 }
+perf = { level = "deny", priority = -10 }
+restriction = { level = "allow", priority = -10 } # This contains conflicting ones and need to be decided on a case by case basis
+style = { level = "deny", priority = -10 }
+suspicious = { level = "warn", priority = -10 }
+
+# Selected restrictions - deny
+absolute_paths = "deny"
+as_underscore = "deny"
+empty_enum_variants_with_brackets = "deny"
+empty_structs_with_brackets = "deny"
+exit = "deny"
+float_cmp_const = "deny"
+infinite_loop = "deny"
+iter_over_hash_type = "deny"
+large_include_file = "deny"
+let_underscore_must_use = "deny"
+lossy_float_literal = "deny"
+map_err_ignore = "deny"
+modulo_arithmetic = "deny"
+needless_raw_strings = "deny"
+panic_in_result_fn = "deny"
+pattern_type_mismatch = "deny"
+print_stderr = "deny"
+print_stdout = "deny"
+pub_use = "deny"
+pub_without_shorthand = "deny"
+redundant_type_annotations = "deny"
+renamed_function_params = "deny"
+self_named_module_files = "deny"
+semicolon_outside_block = "deny"
+str_to_string = "deny"
+string_lit_chars_any = "deny"
+string_slice = "deny"
+string_to_string = "deny"
+tests_outside_test_module = "deny"
+todo = "deny"
+try_err = "deny"
+unimplemented = "deny"
+unnecessary_safety_comment = "deny"
+unnecessary_safety_doc = "deny"
+unwrap_used = "deny"
+
+# Selected restrictions - warn
+dbg_macro = "warn"
+decimal_literal_representation = "warn"
+expect_used = "warn"
+min_ident_chars = "warn"
+missing_asserts_for_indexing = "warn"
+missing_inline_in_public_items = "warn"
+non_ascii_literal = "warn"
+panic = "warn"
+same_name_method = "warn"
+unnecessary_self_imports = "warn"
+unreachable = "warn"
+unwrap_in_result = "warn"
+use_debug = "warn"
+wildcard_enum_match_arm = "warn"
