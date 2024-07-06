@@ -15,5 +15,6 @@ impl Plugin for NetworkPlugin {
         &self,
         _app: &mut App,
     ) {
+        // TODO landlock now has initial network support
     }
 }
