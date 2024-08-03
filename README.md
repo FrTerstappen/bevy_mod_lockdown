@@ -158,5 +158,6 @@ All code in this repository is dual-licensed under either:
 
 |   bevy | bevy_mod_lockdown |
 | -----: | ----------------: |
+| 0.14.1 |             0.4.0 |
 | 0.14.0 |             0.3.0 |
 | 0.13.1 |     0.1.0 - 0.2.0 |
