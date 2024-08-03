@@ -82,14 +82,12 @@ skip = [
     { crate = "ndk@0.8.0", reason = "Old version used by other dependency" },
     { crate = "ndk-sys@0.5.0+25.2.9519653", reason = "Old version used by other dependency" },
     { crate = "toml_edit@0.21.1", reason = "Old version used by other dependency" },
-    { crate = "windows@0.57.0", reason = "Old version used by other dependency" },
-    { crate = "windows-core@0.57.0", reason = "Old version used by other dependency" },
     { crate = "windows-implement@0.53.0", reason = "Old version used by other dependency" },
-    { crate = "windows-implement@0.57.0", reason = "Old version used by other dependency" },
     { crate = "windows-interface@0.53.0", reason = "Old version used by other dependency" },
-    { crate = "windows-interface@0.57.0", reason = "Old version used by other dependency" },
     { crate = "windows-result@0.1.2", reason = "Old version used by other dependency" },
     { crate = "winnow@0.5.40", reason = "Old version used by other dependency" },
+    { crate = "windows-sys@0.52.0", reason = "Old version used by other dependency" },
+    { crate = "windows-sys@0.59.0 ", reason = "Old version used by other dependency" },
 ] # Only for duplicate detection
 # skip-tree = []
 
