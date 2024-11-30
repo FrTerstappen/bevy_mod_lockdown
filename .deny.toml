@@ -20,16 +20,16 @@ yanked = "deny"
 [licenses]
 version = 2
 allow = [
-    "Apache-2.0",         # https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)
-    "BSD-2-Clause",       # https://tldrlegal.com/license/bsd-2-clause-license-(freebsd)
-    "BSD-3-Clause",       # https://tldrlegal.com/license/bsd-3-clause-license-(revised)
-    "CC0-1.0",            # https://creativecommons.org/publicdomain/zero/1.0/
-    "ISC",                # https://tldrlegal.com/license/-isc-license
-    "LicenseRef-UFL-1.0", # https://tldrlegal.com/license/ubuntu-font-license,-1.0
-    "MIT",                # https://tldrlegal.com/license/mit-license
-    "OFL-1.1",            # https://spdx.org/licenses/OFL-1.1.html
-    "Unicode-DFS-2016",   # https://spdx.org/licenses/Unicode-DFS-2016.html
-    "Zlib",               # https://tldrlegal.com/license/zlib-libpng-license-(zlib)
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "CC0-1.0",
+    "ISC",
+    "LicenseRef-UFL-1.0",
+    "MIT",
+    "OFL-1.1",
+    "Unicode-3.0",
+    "Zlib",
     "MIT-0",
     "0BSD",
 ]
