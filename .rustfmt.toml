@@ -4,7 +4,7 @@ unstable_features = true
 # Global
 edition = "2021"
 newline_style = "Unix"
-version = "Two"
+style_edition = "2024"
 max_width = 120
 tab_spaces = 4
 use_small_heuristics = "Max"
