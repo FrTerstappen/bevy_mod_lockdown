@@ -23,6 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Currently nothing
 
+## [0.5.0] - 2024-07-06
+
+### Changed
+
+- Updated to bevy 0.15.0
+- Updated all other dependencies
+- Match MSRV 1.82.0 of bevy
+
 ## [0.3.0] - 2024-07-06
 
 ### Changed
