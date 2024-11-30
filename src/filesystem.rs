@@ -121,14 +121,14 @@ fn try_restricting_file_access_linux(
     mut adjustments: ResMut<'_, LockdownAdjustments>,
 ) {
     use landlock::{
-        path_beneath_rules,
+        ABI,
         Access,
         AccessFs,
         Ruleset,
         RulesetAttr,
         RulesetCreatedAttr,
         RulesetStatus,
-        ABI,
+        path_beneath_rules,
     };
 
     let abi = ABI::V4;

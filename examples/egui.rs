@@ -3,9 +3,9 @@ use bevy::{
     window::PrimaryWindow,
 };
 use bevy_egui::{
-    egui,
     EguiContext,
     EguiPlugin,
+    egui,
 };
 use bevy_mod_lockdown::LockdownAdjustments;
 
