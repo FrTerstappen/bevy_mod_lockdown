@@ -13,7 +13,9 @@ feature-depth = 1
 version = 2
 # db-path = "$CARGO_HOME/advisory-dbs"
 # db-urls = ["https://github.com/rustsec/advisory-db"]
-# ignore = []
+ignore = [
+    { id = "RUSTSEC-2024-0436", reason = "Unmaintained crate 'paste' in our tree" },
+]
 git-fetch-with-cli = false # False = use build in git library
 yanked = "deny"
 
@@ -21,17 +23,19 @@ yanked = "deny"
 version = 2
 allow = [
     "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
     "BSD-2-Clause",
     "BSD-3-Clause",
     "CC0-1.0",
     "ISC",
-    "LicenseRef-UFL-1.0",
     "MIT",
     "OFL-1.1",
     "Unicode-3.0",
     "Zlib",
     "MIT-0",
     "0BSD",
+    "Ubuntu-font-1.0",
+    "NCSA",
 ]
 confidence-threshold = 0.93
 # exceptions = []
@@ -98,13 +102,14 @@ skip = [
     { crate = "windows-targets@0.52.6", reason = "Old version used by other dependency" },
     { crate = "windows_aarch64_gnullvm@0.52.6", reason = "Old version used by other dependency" },
     { crate = "windows_i686_gnu@0.52.6", reason = "Old version used by other dependency" },
-    { crate = "windows_i686_gnullvm@0.52.6", reason = "Old version used by other dependency" },
     { crate = "windows_i686_msvc@0.52.6", reason = "Old version used by other dependency" },
     { crate = "windows_x86_64_gnu@0.52.6", reason = "Old version used by other dependency" },
     { crate = "windows_x86_64_gnullvm@0.52.6", reason = "Old version used by other dependency" },
     { crate = "windows_x86_64_msvc@0.52.6", reason = "Old version used by other dependency" },
     { crate = "windows-core@0.58.0", reason = "Old version used by other dependency" },
     { crate = "windows_aarch64_msvc@0.52.6", reason = "Old version used by other dependency" },
+    { crate = "itertools@0.12.1", reason = "Old version used by other dependency" },
+    { crate = "zerocopy@0.7.35", reason = "Old version used by other dependency" },
 ] # Only for duplicate detection
 # skip-tree = []
 
