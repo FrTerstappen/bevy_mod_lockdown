@@ -117,8 +117,8 @@ Include the library in your project by adding it to your `Cargo.toml`.
 
 ```toml
 [dependencies]
-bevy = "0.14.0"
-bevy_mod_lockdown = "0.3.0"
+bevy = "0.15.3"
+bevy_mod_lockdown = "0.7.0"
 ```
 
 Then add the `LockdownPlugin` to your app like shown below.
@@ -158,7 +158,8 @@ All code in this repository is dual-licensed under either:
 
 |   bevy | bevy_mod_lockdown |
 | -----: | ----------------: |
-| 0.15.4 |             0.6.0 |
+| 0.15.3 |             0.7.0 |
+| 0.15.1 |             0.6.0 |
 | 0.15.0 |             0.5.0 |
 | 0.14.1 |             0.4.0 |
 | 0.14.0 |             0.3.0 |
