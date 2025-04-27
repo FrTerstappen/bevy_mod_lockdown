@@ -1,0 +1,18 @@
+order = [
+    "Asset",
+    "AsBindGroup",
+    "Bundle",
+    "Component",
+    "Event",
+    "Resource",
+    "States",
+    "SystemSet",
+    "Reflect",
+    "...",
+]
+
+# Order of unlisted
+preserve = false
+
+# Exclude files, like .gitignore
+exclude = []
