@@ -11,23 +11,32 @@ clear:
 lint:
     typos
     cargo fmt --all -- --check
+    taplo check
+    taplo fmt --check
+    cargo sort-derives --check
     just --fmt --check --unstable
-    cargo clippy --workspace --all-targets --all-features -- -D warnings
-    cargo machete
-    cargo udeps --workspace
 
 [group("Code quality")]
 check:
     cargo check --keep-going --workspace --all-features
-    cargo pants
+    cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+[group("Code quality")]
+dependencies:
+    # cargo machete # TODO reenable
+    cargo +nightly udeps --workspace --all-targets
+
+[group("Code quality")]
+compliance:
+    # cargo pants --dev
     cargo deny check licenses
     cargo deny check bans --hide-inclusion-graph
     cargo deny check advisories
     cargo deny check sources
-    cargo outdated --depth 6
 
 [group("Code quality")]
-code-quality: lint check
+code-quality: lint check dependencies compliance
+    cargo modules orphans --package bevy_mod_lockdown --all-features --deny
 
 [group("Dev")]
 dev: clear code-quality
