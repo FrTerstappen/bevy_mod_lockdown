@@ -17,11 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 -->
 
-## [Unreleased]
+## [0.8.0] - 2025-04-24
 
-### Added
+### Changed
 
-- Currently nothing
+- Updated to bevy 0.16.0
+- Updated all other dependencies
+- Match MSRV 1.85.0 of bevy
 
 ## [0.5.0] - 2024-07-06
 
