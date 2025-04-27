@@ -61,6 +61,11 @@ bevy_egui = { version = "0.34.1", default-features = false, features = [
     "render",
 ] }
 
+[workspace.metadata.cargo-udeps.ignore]
+#normal = []
+development = ["bevy_egui"]
+#build = []
+
 [[example]]
 name = "egui"
 path = "examples/egui.rs"
