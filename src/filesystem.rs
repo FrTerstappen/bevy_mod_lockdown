@@ -10,7 +10,7 @@ use crate::{
     LockdownSet,
 };
 
-#[derive(Debug, Default, Resource, Reflect)]
+#[derive(Resource, Reflect, Debug, Default)]
 #[reflect(Resource)]
 pub enum FilesystemAdjustment {
     #[default]
@@ -20,7 +20,7 @@ pub enum FilesystemAdjustment {
     Failed,
 }
 
-#[derive(Debug, Resource, Reflect)]
+#[derive(Resource, Reflect, Debug)]
 #[reflect(Resource)]
 pub struct AllowedFilesystemAccess {
     pub(crate) read_only:  Vec<PathBuf>,

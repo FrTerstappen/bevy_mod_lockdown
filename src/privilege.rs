@@ -5,7 +5,7 @@ use crate::{
     LockdownSet,
 };
 
-#[derive(Debug, Default, Resource, Reflect)]
+#[derive(Resource, Reflect, Debug, Default)]
 #[reflect(Resource)]
 pub enum PrivilegeAdjustment {
     #[default]

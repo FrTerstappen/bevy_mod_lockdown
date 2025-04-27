@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-#[derive(Debug, Default, Resource, Reflect)]
+#[derive(Resource, Reflect, Debug, Default)]
 #[reflect(Resource)]
 pub enum SystemCallAdjustment {
     #[default]

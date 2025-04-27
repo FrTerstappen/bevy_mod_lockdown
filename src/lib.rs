@@ -17,14 +17,14 @@ pub mod system_call;
 
 use bevy::prelude::*;
 
-#[derive(Debug, SystemSet, Clone, PartialEq, Eq, Hash)]
+#[derive(SystemSet, Clone, Debug, Eq, Hash, PartialEq)]
 pub enum LockdownSet {
     PreStartup,
     Startup,
     PostStartup,
 }
 
-#[derive(Debug, Default, Resource, Reflect)]
+#[derive(Resource, Reflect, Debug, Default)]
 #[reflect(Resource)]
 pub struct LockdownAdjustments {
     #[cfg(feature = "filesystem")]
