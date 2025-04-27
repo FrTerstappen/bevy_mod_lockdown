@@ -10,8 +10,8 @@ repository = "https://github.com/FrTerstappen/bevy_mod_lockdown"
 homepage = "https://github.com/FrTerstappen/bevy_mod_lockdown"
 documentation = "https://docs.rs/bevy_mod_lockdown"
 readme = "README.md"
-edition = "2021"
-rust-version = "1.82.0"
+edition = "2024"
+rust-version = "1.85.0"
 exclude = []
 
 [package.metadata.docs.rs]
